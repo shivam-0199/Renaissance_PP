@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int main() {
+    // your code goes here
+    int p,d,m,s;
+    scanf("%d %d %d %d",&p,&d,&m,&s);
+    int x,y=0;
+    while(s>=m){
+        
+       if(p-d>=m){
+           s=s-p;
+           p=p-d;
+           x=x+1;
+       }else{
+           p=m;
+           s=s-m;
+           y=y+1;
+       }
+    }
+    int z=x+y;
+    printf("%d", z);
+    return 0;
+}
