@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+int main() {
+    // your code goes here
+    int t;
+    long long n;
+    scanf("%d", &t);
+    for(int i=1;i<=t;i++){
+        scanf("%lld",&n);
+        long long arr[n];
+        for(int j=0;j<n;j++){
+            scanf("%lld", &arr[j]);
+        }
+        int sum=0;
+        for (int k=0;k<n;k++){
+            long long x= arr[k];
+            int count =0;
+            if(x==0){
+                count++;
+            }
+            while(x){
+               long long x= x/10;
+               count++;
+            }
+            sum=sum+count;
+        }
+        int counta=0;
+        for(int p=1;p<=sum;p++){
+            if(sum%p==0){
+                counta++;
+            }
+        }
+        if(counta==2){
+           printf("yes") ;
+        }else{
+            printf("No");
+        }
+        
+    }
+    return 0;
+}
