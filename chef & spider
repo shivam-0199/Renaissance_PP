@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main(void) {
+    // your code goes here
+    int n,t;
+    scanf("%d", &t);
+    
+    int j;
+    
+    for(int i=1;i<=t;i++){
+        scanf("%d",&n);
+        int sum=1;
+         int l=1;
+         int count=0;
+        while(1){
+             sum=sum+l;
+             l=l+9;
+             
+            count =count+1;
+            if(sum>=n){
+                break;
+            }
+        }
+        printf("%d\n",count);
+        
+    }
+    return 0;
+}
