@@ -1,0 +1,33 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <limits.h>
+using namespace std;
+int main() {
+    // Write C++ code here
+    //std::cout << "Hello world!";
+    int n,p,q,r;
+    cin>>n>>p>>q>>r;
+    int arr[n];
+    int parr[n];
+    int sarr[n];
+    int ans= INT_MIN;
+    int sum;
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    parr[0]= p*arr[0];
+    for(int i=1;i<n;i++){
+        parr[i]=max(p*arr[i], parr[i-1]);
+    }
+    sarr[n-1]= r*arr[n-1];
+    for(int i=n-2;i>=0;i--){
+        sarr[i]=max(r*arr[i], sarr[i+1]);
+    }
+   
+    for(int j=0;j<=n-1;j++){
+        sum=(parr[j] + q*j + sarr[j]);
+        ans= max(ans, sum);
+    }
+    cout<<ans;
+    return 0;
+}
