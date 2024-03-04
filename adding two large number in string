@@ -16,12 +16,12 @@ int main() {
         for(int j=0;j<1;j++){
             int sum=((a[j]-'0')+(b[j]-'0')+carry);
              x.push_back(sum%10 + '0');
-             carry=carry/10;
+             carry=sum/10;
         }
          for(int j=1;j<len;j++){
             int sum=((a[j]-'0')+carry);
              x.push_back(sum%10 + '0');
-             carry=carry/10;
+             carry=sum/10;
         }
         if(carry){
             x.push_back(carry +'0');
