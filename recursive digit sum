@@ -4,7 +4,7 @@ int superDigit(string n, int k) {
          if(n.length()==0){
         return 0;
     }
-         int ans=0;
+         long long ans=0;
         int y=n.length();
         for(int i=0;i<y;i++){
            
