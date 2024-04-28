@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int i=0;
+    int j=0;
+    
+    double champagneTower(int poured, int query_row, int query_glass) {
+        double vect[101][101]={0.0};
+        vect[0][0]=poured;
+        for(int i=0;i<100;i++){
+            for(int j=0;j<=i;j++){
+                if(vect[i][j]>1){
+                    vect[i+1][j]+=((vect[i][j]-1)/2);
+                    vect[i+1][j+1]+=((vect[i][j]-1)/2);
+                    vect[i][j]=1;
+                }
+            }
+        }
+        return vect[query_row][query_glass];
+        
+
+     }
+};
