@@ -1,0 +1,33 @@
+class Solution {
+public:
+   double p;
+double myPow(double n,int k){
+    
+    if(k==0){
+        return 1;
+    }
+    if(k==1){
+        return n;
+    }
+    
+    if(abs(k)%2==0){
+        if(k<0){
+          p=myPow(1/n,abs(k)/2);
+        return p*p;  
+        }else{
+           p=myPow(n,k/2);
+        return p*p;  
+        }
+        
+    }
+    else{
+      if(k<0){
+          p=myPow(1/n,abs(k)/2);
+        return (1/n)*p*p;  
+        }else{
+           p=myPow(n,k/2);
+        return n*p*p ; 
+        }
+    }
+}
+};
