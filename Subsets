@@ -21,3 +21,38 @@ public:
          return ans;
     }
 };
+
+approach 2.
+subset using single output vector(passing output by reference)
+class Solution {
+public:
+     //vector<vector<int>>ans;
+     //vector<int>output;
+     void find(int idx,int s,vector<int>&output,vector<int> nums,vector<vector<int>>&ans){
+        if(idx>=nums.size()){
+            //ans.push_back(output);
+            for(int k=0;k<output.size();k++){
+                cout<<output[k]<<" ";
+            }
+            return;
+        }
+        find(idx+1,s,output,nums,ans);
+        
+        output.insert(output.begin() + s, nums[idx]);
+        //output.push_back(nums[idx]);
+
+        find(idx+1,s+1,output,nums,ans);
+     }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int idx=0;
+         vector<vector<int>>ans;
+         vector<int>output;
+         int s=output.size();
+         find(idx,s,output,nums,ans);
+         return ans;
+    }
+};
+
+
+
+
