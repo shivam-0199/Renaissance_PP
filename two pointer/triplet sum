@@ -1,0 +1,55 @@
+q) https://leetcode.com/problems/3sum/
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>ans;
+        
+        
+        int e=nums.size();
+        
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<e;i++){
+            if(i>0 && nums[i]==nums[i-1]){
+                continue;
+            }
+            int rem= -1*(nums[i]);
+            int j=i+1;
+            int k=e-1;
+            
+            while(j<k){
+                vector<int>temp;
+                int cursum=nums[j]+nums[k];
+                if(cursum>rem){
+                    k--;
+                }
+                else if (cursum<rem){
+                    j++;
+                }
+                else{
+                    temp.push_back(nums[i]);
+                    temp.push_back(nums[j]);
+                    temp.push_back(nums[k]);
+                    ans.push_back(temp);
+                    
+                    if(nums[j]==nums[k]){
+                        break;
+                    }
+                    else{
+                        int val1=nums[j];
+                        int val2=nums[k];
+                        while(j<k && val1==nums[j]){
+                            j++;
+                        }
+                        while(j<k && val2==nums[k]){
+                            k--;
+                        }
+                    }
+                }
+            }
+
+        }
+        return ans;
+    }
+    
+};
