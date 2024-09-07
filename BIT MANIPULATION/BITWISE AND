@@ -1,0 +1,23 @@
+
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+
+        long long ans=0;
+        long long mask=(1LL<<31);
+        while(mask){
+            if((mask & left)==(mask & right)){
+                if((mask & left)==1){
+                    ans=ans+mask;
+                }
+            mask=(mask>>1);  
+            }else{}    
+                    break;
+            }
+            
+        }
+        
+        return ans;
+    }
+};
