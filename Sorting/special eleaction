@@ -1,0 +1,97 @@
+https://www.codechef.com/MARCH18B/problems/MINVOTE
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int findmin(int low, int high, vector<long long int>& cumsum, vector<int>& arr, int i) {
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (cumsum[mid - 1] - cumsum[i] <= arr[i]) {
+            low = mid + 1;
+        }
+        else if (cumsum[mid - 1] - cumsum[i] > arr[i]) {
+            if (cumsum[mid - 2] - cumsum[i] <= arr[i]) {
+                return mid;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+    }
+    return low;
+}
+ 
+int findmax(int low, int high, vector<long long int>& cumsum, vector<int>& arr, int i) {
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (cumsum[high] - cumsum[mid] <= arr[i]) {
+            high = mid - 1;
+        }
+        else {
+            if (cumsum[high] - cumsum[mid + 1] <= arr[i]) {
+                return mid;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+    }
+    return high;
+}
+ 
+int main() {
+    // your code goes here
+    int T;
+    cin >> T;
+ 
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> arr(N);
+        for (int i = 0; i < N; i++) {
+            cin >> arr[i];
+        }
+        if (N == 1) {
+            cout << "0" << endl;
+            continue;
+        }
+        else if (N == 2) {
+            cout << "1 1" << endl;
+            continue;
+        }
+ 
+        vector<long long int> cumsum(N, 0);
+        cumsum[0] = arr[0];
+        for (int i = 1; i < N; i++) {
+            cumsum[i] += arr[i];
+            cumsum[i] += cumsum[i - 1];
+        }
+ 
+        vector<long long int> votes(N, 0);
+        for (int i = 0; i < N; i++) {
+            if (i != N - 1) {
+                int low = i + 1, high = N - 1;
+                int index = findmin(low, high, cumsum, arr, i);
+                votes[index - 1] += 1;
+                votes[i] += -1;
+            }
+            if (i != 0) {
+                int low = 0, high = i - 1;
+                int index = findmax(low, high, cumsum, arr, i);
+                if(index>=0)
+                    votes[index] += -1;
+                votes[i - 1] += 1;
+            }
+        }
+ 
+        for (int i = N - 2; i >= 0; i--) {
+            votes[i] += votes[i + 1];
+        }
+ 
+        for (auto x : votes) {
+            cout << x << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
