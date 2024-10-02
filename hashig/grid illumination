@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> gridIllumination(int n, vector<vector<int>>& lamps, vector<vector<int>>& queries) {
+
+        vector<vector<int>>ans(n,vector<int>(n,0));
+        vector<int>on;
+       
+         vector<int> row(n,0),col(n,0),majdia(2*n - 1,0), mindia(2*n - 1,0);
+        
+
+
+        for(int i=0;i<lamps.size();i++){
+             int r=lamps[i][0];
+             int s=lamps[i][1];
+                
+                     row[r]=1;
+                     col[s]=1;
+                     majdia[r-s+n-1]=1;
+                     mindia[r+s]=1;
+                
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(row[i]==1 || col[j]==1 || majdia[i-j+n-1]==1 || mindia[i+j]==1){
+                         ans[i][j]=1;
+                }
+            }
+        }
+
+          int queriesSize = queries.size();
+ 
+        for(int i = 0; i < queriesSize; i++){
+            int p = queries[i][0],q = queries[i][1];
+            if(row[p] || col[q] || majdia[p - q + n - 1] || mindia[p + q]){
+                on.push_back(1);
+            }else on.push_back(0);
+            
+            for(int i=max(0,p-1);i<=min(n-1,p+1);i++){
+                for(int j=max(0,q-1);j<=min(n-1,q+1);j++){
+                    ans[i][j]=0;
+                    
+                }
+            }
+        }
+         
+
+        return on;
+    }
+};
