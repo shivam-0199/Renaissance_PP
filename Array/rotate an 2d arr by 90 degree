@@ -1,0 +1,48 @@
+rotate an 2d arr by 90 degree
+
+approach - take transpoe and then reverse each row
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+void rev(int arr[],int x,int y){
+     int p=x;
+    int q=y;
+    while(p<=q){
+        int temp=arr[p];
+        arr[p]=arr[q];
+        arr[q]=temp;
+        p++;
+        q--; 
+    }    
+}
+int main() {
+    // your code goes here
+    int n;
+    cin>>n;
+    int arr[n][n];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>arr[i][j];
+        }
+    }  
+    for(int i=0;i<n;i++){   
+        for(int j=i;j<n;j++){
+            int temp=arr[i][j];
+            arr[i][j]=arr[j][i];
+            arr[j][i]=temp;  
+        }
+    }
+    for(int i=0;i<n;i++){
+        rev(arr[i],0,n-1);
+    } 
+     for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<arr[i][j];
+            cout<<" ";
+        }
+        cout<<'\n';
+    }
+    return 0;
+}
