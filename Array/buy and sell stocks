@@ -1,0 +1,23 @@
+buy and sell stocks1
+
+#include <iostream>
+using namespace std;
+int main() {
+    // your code goes here
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    int pmin=arr[0];
+    int ans=0;
+    for (int j=1;j<n;j++){
+       
+        ans=max((arr[j]-pmin),ans);
+        pmin=min(pmin,arr[j]);
+    }
+    cout<<ans;
+    return 0;
+}
