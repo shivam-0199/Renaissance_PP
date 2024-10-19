@@ -1,0 +1,77 @@
+RAIN WATER TAPPING
+
+
+
+#include <iostream>
+#include<limits.h>
+using namespace std;
+int main(void) {
+    // your code goes here
+    long long n;
+    cin>>n;
+    long long  arr[n];
+    long long  pmax[n];
+    long long  smax[n];
+
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    pmax[0]=arr[0];
+     for(int i=1;i<n;i++){
+        pmax[i]=max(pmax[i-1], arr[i]);
+    }
+    smax[n-1]=arr[n-1];
+     for(int i=n-2;i>=0;i--){
+        smax[i]=max(smax[i+1], arr[i]);
+    }
+        long long  amount=0;
+        long long  h;
+    for(int j=1;j<=n-2;j++){
+        // h=min(pmarr[j-1],smarr[j+1]);
+        
+        // if (h>arr[j]){
+        //     amount = amount + (h-arr[j]);
+        // }
+        if(pmax[j-1]>arr[j] && smax[j+1]>arr[j]){
+            amount+=((min(pmax[j-1],smax[j+1]))-arr[j]);
+        }
+    }
+     cout<<amount;
+    
+    return 0;
+}
+
+#include <iostream>
+#include<limits.h>
+using namespace std;
+int main(void) {
+    // your code goes here
+    long long n;
+    cin>>n;
+    long long  arr[n];
+    long long  pmarr[n];
+    long long  smarr[n];
+
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    pmarr[0]=arr[0];
+     for(int i=1;i<n;i++){
+        pmarr[i]=max(pmarr[i-1], arr[i]);
+    }
+    smarr[n-1]=arr[n-1];
+     for(int i=n-2;i>=0;i--){
+        smarr[i]=max(smarr[i+1], arr[i]);
+    }
+        long long  amount=0;
+        long long  h;
+    for(int j=1;j<=n-2;j++){
+        h=min(pmarr[j-1],smarr[j+1]);
+        if (h>arr[j]){
+            amount = amount + (h-arr[j]);
+        }
+    }
+     cout<<amount;
+    
+    return 0;
+}
