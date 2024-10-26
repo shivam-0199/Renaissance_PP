@@ -1,0 +1,44 @@
+https://leetcode.com/problems/reorder-list/
+
+
+class Solution {
+public:
+     ListNode* getmid(ListNode* p){
+        ListNode* slow=p;
+        ListNode* fast=p;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+      }
+    ListNode* rev(ListNode* t){
+        ListNode* curr=t;
+        ListNode* prev=NULL;
+        ListNode* temp;
+        while(curr){
+            temp=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp;
+
+        }
+        return prev;
+      }
+    void reorderList(ListNode* head) {
+        
+           ListNode* mid=getmid(head);
+            ListNode* t=rev(mid);
+            ListNode* h=head;
+      while(h && t){
+        ListNode* temph=h->next;
+        ListNode* tempt=t->next;
+        h->next=t;
+        t->next=temph;
+        h=temph;
+        t=tempt;
+
+      }
+        
+    }
+};
