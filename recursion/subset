@@ -1,0 +1,53 @@
+
+https://leetcode.com/problems/subsets/
+
+class Solution {
+public:
+     void allsubset( vector<int>& nums, vector<vector<int>>&ans,vector<int>&temp,int i){
+        if(i==nums.size()){
+            ans.push_back(temp);
+            return;
+        }
+         allsubset(nums,ans,temp,i+1);
+        temp.push_back(nums[i]);
+        allsubset(nums,ans,temp,i+1);
+        temp.pop_back();
+       
+
+     }
+
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        int i=0;
+        //int size=0;
+        allsubset(nums,ans,temp,i);
+        return ans;
+
+        
+    }
+};
+
+
+class Solution {
+public:
+    void calcsubsets(vector<int>&nums,int index, vector<vector<int>>&output, vector<int>& temp,int arrsize){
+         if(index>=arrsize){
+             output.push_back(temp);
+             return;
+         }
+         temp.push_back(nums[index]);
+         calcsubsets(nums,index+1,output,temp,arrsize);
+         temp.pop_back();
+         calcsubsets(nums,index+1,output,temp,arrsize);
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int arrsize=nums.size();
+        vector<vector<int>> output;
+        vector<int> temp;     
+        calcsubsets(nums,0,output,temp,arrsize);
+        return output;
+    }
+};
