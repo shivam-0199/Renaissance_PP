@@ -1,0 +1,50 @@
+https://leetcode.com/problems/permutation-sequence/description/
+
+class Solution {
+public:
+      void rightrotate(string &str,int p,int q){
+        char temp=str[q];
+        while(q-1>=p){
+            str[q]=str[q-1];
+            q--;
+        }
+        str[p]=temp;
+        
+      }
+       void  leftrotate(string &str,int p,int q){
+        char temp=str[p];
+        while(p+1<=q){
+            str[p]=str[p+1];
+            p++;
+        }
+        str[q]=temp;
+        
+      }
+      string str="";
+      string ans;
+      int itr=0;
+      void solve(string &str,int n,int &k,int i){
+            if(i==n-1){
+                itr++;
+                if(itr==k){
+                      ans=str;
+                      return;
+                }
+                return;
+            }
+            for(int j=i;j<n;j++){
+                
+                rightrotate(str,i,j);
+                solve(str,n,k,i+1);
+                leftrotate(str,i,j);
+            }
+      }
+    string getPermutation(int n, int k) {
+       
+        for(int x=1;x<=n;x++){
+             str+=to_string(x);
+        }
+        solve(str,n,k,0);
+        return str;
+    }
+};
